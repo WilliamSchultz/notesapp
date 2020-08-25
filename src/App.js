@@ -1,6 +1,20 @@
-import React from 'react';
+import React, {useEffect, useReducer} from 'react';
+import { API } from 'aws-amplify';
+import { List } from 'antd';
+import 'antd/dist/antd.css';
+import { listNotes } from './graphql/queries';
 import logo from './logo.svg';
 import './App.css';
+import Amplify from 'aws-amplify'
+import config from '.aws-exports'
+Amplify.configure(config)
+
+const initialState = {
+  notes: [],
+  loading: true,
+  error: false
+  form: { name: '', description: ''}
+}
 
 function App() {
   return (
